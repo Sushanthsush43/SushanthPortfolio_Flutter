@@ -85,7 +85,7 @@ class _IphonePageState extends State<IphonePage> {
                 decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black, width: 2)),
+                    border: Border.all(color: Colors.black, width: 3)),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10, left: 17),
                   child: Column(
@@ -134,7 +134,7 @@ class _IphonePageState extends State<IphonePage> {
                 decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black, width: 2)),
+                    border: Border.all(color: Colors.black, width: 3)),
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
@@ -191,7 +191,7 @@ class _IphonePageState extends State<IphonePage> {
                 decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black, width: 2)),
+                    border: Border.all(color: Colors.black, width: 3)),
               ),
             ),
             Padding(
@@ -202,7 +202,7 @@ class _IphonePageState extends State<IphonePage> {
                 decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black, width: 2)),
+                    border: Border.all(color: Colors.black, width: 3)),
               ),
             ),
             Padding(
@@ -213,7 +213,7 @@ class _IphonePageState extends State<IphonePage> {
                 decoration: BoxDecoration(
                   color: Colors.red,
                   borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.black, width: 2),
+                  border: Border.all(color: Colors.black, width: 3),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10, left: 17),
@@ -254,7 +254,7 @@ class _IphonePageState extends State<IphonePage> {
                 decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black, width: 2)),
+                    border: Border.all(color: Colors.black, width: 3)),
               ),
             ),
             Padding(
@@ -265,7 +265,7 @@ class _IphonePageState extends State<IphonePage> {
                 decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black, width: 2)),
+                    border: Border.all(color: Colors.black, width: 3)),
               ),
             ),
             Padding(
@@ -276,7 +276,7 @@ class _IphonePageState extends State<IphonePage> {
                 decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black, width: 2)),
+                    border: Border.all(color: Colors.black, width: 3)),
               ),
             ),
             Image.asset(
@@ -394,7 +394,7 @@ class _IphonePageState extends State<IphonePage> {
           height: 55.0,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(35.0),
-            // border: Border.all(color: Colors.black, width: 2),
+            // border: Border.all(color: Colors.black, width: 3),
             // boxShadow: [
             //   BoxShadow(
             //     color: Colors.black.withOpacity(0.5),

@@ -20,7 +20,7 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
   String author = '';
   bool _isSecondTextVisible = true;
   late Timer _timer;
-  Color backgroundColor = Colors.white; // Add a variable for background color
+  Color backgroundColor = Color(0xFFE9A89B);
 
   void fetchQuote() async {
     final dailyQuotesProvider = DailyQuotesProvider();
@@ -79,23 +79,30 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
           alignment: Alignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 410, right: 530),
+              padding: const EdgeInsets.only(bottom: 445, right: 530),
               child: Container(
                 width: 200,
-                height: 120,
+                height: 140,
                 decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black, width: 2)),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.black, width: 3),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [const Color.fromRGBO(4, 1, 5, 1), backgroundColor],
+                    stops: [0.15, 2.887],
+                    transform: const GradientRotation(4),
+                  ),
+                ),
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 17),
+                  padding: const EdgeInsets.only(top: 5, left: 17),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Life Quotes",
                         style: GoogleFonts.acme(
-                          fontSize: 20.0,
+                          fontSize: 24.0,
                           textStyle: const TextStyle(
                               color: Color.fromARGB(255, 0, 0, 0)),
                           fontWeight: FontWeight.w100,
@@ -115,7 +122,7 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
                         child: Text(
                           '- $author',
                           style: GoogleFonts.acme(
-                            fontSize: 10.0,
+                            fontSize: 11.0,
                             textStyle: const TextStyle(
                                 color: Color.fromARGB(255, 255, 255, 255)),
                             fontWeight: FontWeight.w100,
@@ -128,14 +135,21 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 140, right: 530),
+              padding: const EdgeInsets.only(bottom: 155, right: 530),
               child: Container(
                 width: 200,
-                height: 120,
+                height: 135,
                 decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black, width: 2)),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.black, width: 3),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [const Color.fromRGBO(4, 1, 5, 1), backgroundColor],
+                    stops: [0.15, 2.887],
+                    transform: const GradientRotation(4),
+                  ),
+                ),
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
@@ -148,7 +162,7 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
                         child: Text(
                           "Hello",
                           style: GoogleFonts.acme(
-                            fontSize: 30.0,
+                            fontSize: 35.0,
                             textStyle: const TextStyle(
                                 color: Color.fromARGB(255, 255, 255, 255)),
                             fontWeight: FontWeight.bold,
@@ -169,7 +183,7 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
                             child: Text(
                               "My name is Sushanth, I'm a Full Stack Intern at Mobiezy Solutions, Bangalore, with an MCA.",
                               style: GoogleFonts.acme(
-                                fontSize: 10.0,
+                                fontSize: 12.0,
                                 textStyle: const TextStyle(
                                     color: Color.fromARGB(255, 255, 255, 255)),
                                 fontWeight: FontWeight.w100,
@@ -185,25 +199,40 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 130, right: 530),
+              padding: const EdgeInsets.only(top: 140, right: 530),
               child: Container(
                 width: 200,
-                height: 120,
+                height: 140,
                 decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black, width: 2)),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.black, width: 3),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [const Color.fromRGBO(4, 1, 5, 1), backgroundColor],
+                    stops: [0.15, 2.887],
+                    transform: const GradientRotation(4),
+                  ),
+                ),
               ),
             ),
+
             Padding(
-              padding: const EdgeInsets.only(top: 400, right: 530),
+              padding: const EdgeInsets.only(top: 435, right: 530),
               child: Container(
                 width: 200,
-                height: 120,
+                height: 140,
                 decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black, width: 2)),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.black, width: 3),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [const Color.fromRGBO(4, 1, 5, 1), backgroundColor],
+                    stops: [0.15, 2.887],
+                    transform: const GradientRotation(4),
+                  ),
+                ),
               ),
             ),
             Padding(
@@ -212,19 +241,25 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
                 width: 200,
                 height: 140,
                 decoration: BoxDecoration(
-                  color: Colors.red,
                   borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.black, width: 2),
+                  border: Border.all(color: Colors.black, width: 3),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [const Color.fromRGBO(4, 1, 5, 1), backgroundColor],
+                    stops: [0.15, 2.887],
+                    transform: const GradientRotation(4),
+                  ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 17),
+                  padding: const EdgeInsets.only(top: 20, left: 23),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         currentTime(),
                         style: GoogleFonts.acme(
-                          fontSize: 40.0,
+                          fontSize: 35.0,
                           textStyle: const TextStyle(
                               color: Color.fromARGB(255, 255, 255, 255)),
                           fontWeight: FontWeight.w100,
@@ -253,23 +288,31 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
                 width: 200,
                 height: 140,
                 decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black, width: 2)),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.black, width: 3),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [const Color.fromRGBO(4, 1, 5, 1), backgroundColor],
+                    stops: [0.15, 2.887],
+                    transform: const GradientRotation(4),
+                  ),
+                ),
                 child: Padding(
-                  padding: const EdgeInsets.all(4.0),
+                  padding: const EdgeInsets.all(7.0),
                   child: GridView.count(
                     crossAxisCount: 3,
                     shrinkWrap: true,
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 10,
                     children: [
-                      buildColorButton(const Color.fromARGB(255, 11, 11, 11)),
-                      buildColorButton(Colors.green),
-                      buildColorButton(Colors.blue),
-                      buildColorButton(Colors.yellow),
-                      buildColorButton(Colors.orange),
-                      buildColorButton(Colors.purple),
+                      buildColorButton(
+                          const Color.fromARGB(255, 172, 103, 103)),
+                      buildColorButton(Color(0xFFFFE9D0)),
+                      buildColorButton(Color(0xFFA3D8FF)),
+                      buildColorButton(Color(0xFF88AB8E)),
+                      buildColorButton(Color(0xFF8E7AB5)),
+                      buildColorButton(Color(0xFF9BB8CD)),
                     ],
                   ),
                 ),
@@ -281,9 +324,16 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
                 width: 200,
                 height: 140,
                 decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black, width: 2)),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.black, width: 3),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [const Color.fromRGBO(4, 1, 5, 1), backgroundColor],
+                    stops: [0.15, 2.887],
+                    transform: const GradientRotation(4),
+                  ),
+                ),
               ),
             ),
             Padding(
@@ -292,16 +342,60 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
                 width: 200,
                 height: 140,
                 decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black, width: 2)),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.black, width: 3),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [const Color.fromRGBO(4, 1, 5, 1), backgroundColor],
+                    stops: [0.15, 2.887],
+                    transform: const GradientRotation(4),
+                  ),
+                ),
               ),
             ),
-            Image.asset(
-              'assets/android.png',
-              height: 650.0,
-              fit: BoxFit.cover,
+
+            Padding(
+              padding: const EdgeInsets.only(top: 25),
+              child: Container(
+                width: 380,
+                height: 800,
+                child: Stack(
+                  children: [
+                    // Image Background
+
+                    Image.asset(
+                      'assets/android.png',
+                      fit: BoxFit.cover,
+                    ),
+
+                    // Gradient Overlay
+                    Positioned(
+                      top: 129,
+                      left: 45.5,
+                      child: Container(
+                        width: 277.5,
+                        height: 500,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              const Color.fromRGBO(4, 1, 5, 1),
+                              backgroundColor
+                            ],
+                            stops: [0.15, 0.887],
+                            transform: const GradientRotation(3.5),
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ),
+
             Positioned(
               top: 85,
               left: 245,
@@ -319,6 +413,7 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
                 ],
               ),
             ),
+
             Positioned(
               top: 175,
               left: 240,
@@ -441,8 +536,6 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
         });
       },
       child: Container(
-        width: 50,
-        height: 50,
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(10),
