@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/pages/IphonePage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:quotes_provider/quotes_provider.dart';
 
 class AndroidPhonePage extends StatefulWidget {
   const AndroidPhonePage({Key? key}) : super(key: key);
@@ -15,6 +16,20 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
   double? indicatorValue;
   Timer? timer;
   String formattedDate = DateFormat.yMMMd().format(DateTime.now());
+  String quote = '';
+  String author = '';
+  bool _isSecondTextVisible = true;
+  late Timer _timer;
+  Color backgroundColor = Colors.white; // Add a variable for background color
+
+  void fetchQuote() async {
+    final dailyQuotesProvider = DailyQuotesProvider();
+    final dailyQuote = await dailyQuotesProvider.getDailyQuote();
+    setState(() {
+      quote = dailyQuote.quote;
+      author = dailyQuote.author;
+    });
+  }
 
   String currentTime() {
     return "${DateTime.now().hour < 10 ? "0${DateTime.now().hour}" : DateTime.now().hour} : "
@@ -24,29 +39,41 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
 
   void updateSeconds() {
     timer = Timer.periodic(
-      Duration(seconds: 1),
+      const Duration(seconds: 1),
       (Timer timer) => setState(() {
         indicatorValue = DateTime.now().second / 60;
       }),
     );
   }
 
+  void _startAnimation() {
+    _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
+      setState(() {
+        _isSecondTextVisible = !_isSecondTextVisible;
+      });
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+    fetchQuote();
     indicatorValue = DateTime.now().second / 60;
     updateSeconds();
+    _startAnimation();
   }
 
   @override
   void dispose() {
     timer?.cancel();
+    _timer.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
       body: Center(
         child: Stack(
           alignment: Alignment.center,
@@ -60,6 +87,44 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: Colors.black, width: 2)),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 17),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Life Quotes",
+                        style: GoogleFonts.acme(
+                          fontSize: 20.0,
+                          textStyle: const TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0)),
+                          fontWeight: FontWeight.w100,
+                        ),
+                      ),
+                      Text(
+                        quote,
+                        style: GoogleFonts.acme(
+                          fontSize: 15.0,
+                          textStyle: const TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255)),
+                          fontWeight: FontWeight.w100,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 0),
+                        child: Text(
+                          '- $author',
+                          style: GoogleFonts.acme(
+                            fontSize: 10.0,
+                            textStyle: const TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255)),
+                            fontWeight: FontWeight.w100,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
             Padding(
@@ -71,6 +136,52 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: Colors.black, width: 2)),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    AnimatedPositioned(
+                      duration: const Duration(seconds: 1),
+                      top: _isSecondTextVisible ? 7 : 50,
+                      left: 0,
+                      right: 0,
+                      child: Center(
+                        child: Text(
+                          "Hello",
+                          style: GoogleFonts.acme(
+                            fontSize: 30.0,
+                            textStyle: const TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255)),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 50,
+                      right: 10,
+                      left: 10,
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(1.0),
+                          child: AnimatedOpacity(
+                            opacity: _isSecondTextVisible ? 1.0 : 0,
+                            duration: const Duration(seconds: 1),
+                            child: Text(
+                              "My name is Sushanth, I'm a Full Stack Intern at Mobiezy Solutions, Bangalore, with an MCA.",
+                              style: GoogleFonts.acme(
+                                fontSize: 10.0,
+                                textStyle: const TextStyle(
+                                    color: Color.fromARGB(255, 255, 255, 255)),
+                                fontWeight: FontWeight.w100,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
             Padding(
@@ -96,17 +207,17 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 410, left: 510),
+              padding: const EdgeInsets.only(bottom: 445, left: 510),
               child: Container(
                 width: 200,
-                height: 120,
+                height: 140,
                 decoration: BoxDecoration(
                   color: Colors.red,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.black, width: 2),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 17),
+                  padding: const EdgeInsets.only(top: 20, left: 17),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -114,7 +225,8 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
                         currentTime(),
                         style: GoogleFonts.acme(
                           fontSize: 40.0,
-                          textStyle: TextStyle(color: Colors.black),
+                          textStyle: const TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255)),
                           fontWeight: FontWeight.w100,
                         ),
                       ),
@@ -124,7 +236,8 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
                           formattedDate,
                           style: GoogleFonts.acme(
                             fontSize: 20.0,
-                            textStyle: TextStyle(color: Colors.black),
+                            textStyle: const TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255)),
                             fontWeight: FontWeight.w100,
                           ),
                         ),
@@ -135,10 +248,38 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 140, left: 510),
+              padding: const EdgeInsets.only(bottom: 155, left: 510),
               child: Container(
                 width: 200,
-                height: 120,
+                height: 140,
+                decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.black, width: 2)),
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: GridView.count(
+                    crossAxisCount: 3,
+                    shrinkWrap: true,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    children: [
+                      buildColorButton(const Color.fromARGB(255, 11, 11, 11)),
+                      buildColorButton(Colors.green),
+                      buildColorButton(Colors.blue),
+                      buildColorButton(Colors.yellow),
+                      buildColorButton(Colors.orange),
+                      buildColorButton(Colors.purple),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 435, left: 510),
+              child: Container(
+                width: 200,
+                height: 140,
                 decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(10),
@@ -146,21 +287,10 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 400, left: 510),
+              padding: const EdgeInsets.only(top: 140, left: 510),
               child: Container(
                 width: 200,
-                height: 120,
-                decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black, width: 2)),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 130, left: 510),
-              child: Container(
-                width: 200,
-                height: 120,
+                height: 140,
                 decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(10),
@@ -195,11 +325,11 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  buildImageContainer('assets/hacker.png', 'Text 1'),
+                  buildImageContainer('assets/project.png', 'My Projects'),
                   const SizedBox(width: 30),
-                  buildImageContainer('assets/hacker.png', 'about'),
+                  buildImageContainer('assets/linkein.jpg', 'LinkedIn'),
                   const SizedBox(width: 30),
-                  buildImageContainer('assets/hacker.png', 'about'),
+                  buildImageContainer('assets/github.png', 'Github'),
                 ],
               ),
             ),
@@ -209,11 +339,11 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  buildImageContainer('assets/hacker.png', 'Text 1'),
+                  buildImageContainer('assets/gmail.jpg', 'Gmail'),
                   const SizedBox(width: 30),
-                  buildImageContainer('assets/hacker.png', 'about'),
+                  buildImageContainer('assets/certficate.png', 'Certificate'),
                   const SizedBox(width: 30),
-                  buildImageContainer('assets/hacker.png', 'about'),
+                  buildImageContainer('assets/orcid.png', 'OrcId'),
                 ],
               ),
             ),
@@ -245,6 +375,7 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
                 ],
               ),
             ),
+            // Add GridView for color buttons
           ],
         ),
       ),
@@ -256,16 +387,16 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
           children: [
             FloatingActionButton(
               onPressed: () {},
-              child: Icon(Icons.adb_rounded),
+              child: const Icon(Icons.adb_rounded),
             ),
             FloatingActionButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => IphonePage()),
+                  MaterialPageRoute(builder: (context) => const IphonePage()),
                 );
               },
-              child: Icon(Icons.apple),
+              child: const Icon(Icons.apple),
             ),
           ],
         ),
@@ -281,15 +412,6 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
           height: 55.0,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(35.0),
-            // border: Border.all(color: Colors.black, width: 2),
-            // boxShadow: [
-            //   BoxShadow(
-            //     color: Colors.black.withOpacity(0.5),
-            //     spreadRadius: 2,
-            //     blurRadius: 5,
-            //     offset: Offset(0, 3), // changes position of shadow
-            //   ),
-            // ],
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(15.0),
@@ -299,15 +421,33 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
             ),
           ),
         ),
-        SizedBox(height: 5), // Space between image and text
+        const SizedBox(height: 5),
         Text(
           text,
-          style: TextStyle(
-              fontSize: 13,
-              color: const Color.fromARGB(
-                  255, 0, 0, 0)), // Customize text style as needed
+          style: const TextStyle(
+            fontSize: 13,
+            color: Color.fromARGB(255, 0, 0, 0),
+          ),
         ),
       ],
+    );
+  }
+
+  Widget buildColorButton(Color color) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          backgroundColor = color;
+        });
+      },
+      child: Container(
+        width: 50,
+        height: 50,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
     );
   }
 }
