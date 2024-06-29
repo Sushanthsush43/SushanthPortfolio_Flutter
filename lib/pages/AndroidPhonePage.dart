@@ -23,11 +23,19 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
   Color backgroundColor = Color(0xFF9BB8CD);
   final PageController _controller = PageController();
   final List<String> _imagePaths = [
+    "assets/flutter.png",
+    'assets/mysql.png',
+    "assets/java.png",
     "assets/aws.png",
-    "assets/firebase.png",
     'assets/js.jpg',
-    "assets/java.png"
+    "assets/mongo.png",
+    "assets/firebase.png",
+    'assets/python.png',
+    "assets/reatjs.png",
+    "assets/dart.png",
   ];
+  int _currentPage = 0;
+  Timer? _imageTimer;
 
   void fetchQuote() async {
     final dailyQuotesProvider = DailyQuotesProvider();
@@ -61,6 +69,18 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
     });
   }
 
+  void _startImageSlider() {
+    _imageTimer = Timer.periodic(Duration(seconds: 2), (Timer timer) {
+      _currentPage++;
+      _controller.animateToPage(
+        _currentPage %
+            _imagePaths.length, // Use modulus operator to wrap around
+        duration: Duration(milliseconds: 1000),
+        curve: Curves.easeInOut,
+      );
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -68,12 +88,14 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
     indicatorValue = DateTime.now().second / 60;
     updateSeconds();
     _startAnimation();
+    _startImageSlider();
   }
 
   @override
   void dispose() {
     timer?.cancel();
     _timer.cancel();
+    _imageTimer?.cancel();
     super.dispose();
   }
 
@@ -86,7 +108,7 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
           alignment: Alignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 155, right: 530),
+              padding: const EdgeInsets.only(top: 140, right: 530),
               child: Container(
                 width: 200,
                 height: 140,
@@ -206,20 +228,35 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 140, right: 530),
+              padding: const EdgeInsets.only(bottom: 155, right: 530),
               child: Container(
                 width: 200,
                 height: 140,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.black, width: 3),
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [const Color.fromRGBO(4, 1, 5, 1), backgroundColor],
-                    stops: [0.15, 2.887],
-                    transform: const GradientRotation(4),
-                  ),
+                child: PageView.builder(
+                  controller: _controller,
+                  itemCount: _imagePaths.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black, width: 3),
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            const Color.fromRGBO(4, 1, 5, 1),
+                            backgroundColor
+                          ],
+                          stops: [0.15, 2.887],
+                          transform: const GradientRotation(4),
+                        ),
+                        image: DecorationImage(
+                          image: AssetImage(_imagePaths[index]),
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
