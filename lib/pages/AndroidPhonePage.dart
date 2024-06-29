@@ -20,7 +20,14 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
   String author = '';
   bool _isSecondTextVisible = true;
   late Timer _timer;
-  Color backgroundColor = Color(0xFFE9A89B);
+  Color backgroundColor = Color(0xFF9BB8CD);
+  final PageController _controller = PageController();
+  final List<String> _imagePaths = [
+    "assets/aws.png",
+    "assets/firebase.png",
+    'assets/js.jpg',
+    "assets/java.png"
+  ];
 
   void fetchQuote() async {
     final dailyQuotesProvider = DailyQuotesProvider();
@@ -79,7 +86,7 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
           alignment: Alignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 445, right: 530),
+              padding: const EdgeInsets.only(bottom: 155, right: 530),
               child: Container(
                 width: 200,
                 height: 140,
@@ -135,7 +142,7 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 155, right: 530),
+              padding: const EdgeInsets.only(bottom: 445, right: 530),
               child: Container(
                 width: 200,
                 height: 135,
@@ -306,8 +313,7 @@ class _AndroidPhonePageState extends State<AndroidPhonePage> {
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 10,
                     children: [
-                      buildColorButton(
-                          const Color.fromARGB(255, 172, 103, 103)),
+                      buildColorButton(Color(0xFFE9A89B)),
                       buildColorButton(Color(0xFFFFE9D0)),
                       buildColorButton(Color(0xFFA3D8FF)),
                       buildColorButton(Color(0xFF88AB8E)),
