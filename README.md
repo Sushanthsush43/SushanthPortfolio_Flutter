@@ -3,7 +3,7 @@
 
 ### Personal Deployement at https://sushanth3.vercel.app/
 
-## Preview
+## Preview Screen
 ![image](https://github.com/Sushanthsush43/SushanthPortfolio_Flutter/blob/main/assets/s.jpg)
 ![image](https://github.com/user-attachments/assets/ad5eec33-4450-4664-9b22-9ff6b5ce83f3)
 
